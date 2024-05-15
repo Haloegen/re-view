@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import axios from "axios";
 
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
@@ -14,72 +15,90 @@ import { Link, useHistory } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import axios from "axios";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 function SignInForm() {
+  const setCurrentUser = useSetCurrentUser();
+
   const [signInData, setSignInData] = useState({
     username: "",
-    password: ""
-  })
-
-  const { username, password} = signInData;
+    password: "",
+  });
+  const { username, password } = signInData;
 
   const [errors, setErrors] = useState({});
 
-  const history = useHistory()
+  const history = useHistory();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      setCurrentUser(data.user);
+      history.push("/");
+    } catch (err) {
+      setErrors(err.response?.data);
+    }
+  };
 
   const handleChange = (event) => {
     setSignInData({
       ...signInData,
       [event.target.name]: event.target.value,
     });
-  }
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try{
-      await axios.post("/dj-rest-auth/login/", signInData)
-      history.push('/')
-    } catch(err) {
-      console.log(err)
-    }
-  }
+  };
 
   return (
     <Row className={styles.Row}>
       <Col className="my-auto p-0 p-md-2" md={6}>
         <Container className={`${appStyles.Content} p-4 `}>
           <h1 className={styles.Header}>sign in</h1>
-          <Form onSubmit={handleSubmit} >
-      <Form.Group className="mb-3" controlId="username">
-        <Form.Label>Username</Form.Label>
-        <Form.Control type="text" placeholder="Enter Username" name="username" value={username} onChange={handleChange}/>
-      </Form.Group>
-      {errors.username?.map((message, idx) => (
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="username">
+              <Form.Label className="d-none">Username</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Username"
+                name="username"
+                className={styles.Input}
+                value={username}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            {errors.username?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>
             ))}
-      <Form.Group className="mb-3" controlId="password">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Enter Password" name="password" value={password} onChange={handleChange} />
-      </Form.Group>
-      {errors.password?.map((message, idx) => (
+
+            <Form.Group controlId="password">
+              <Form.Label className="d-none">Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                name="password"
+                className={styles.Input}
+                value={password}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            {errors.password?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>
             ))}
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-      {errors.non_field_errors?.map((message, idx) => (
+            <Button
+              className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
+              type="submit"
+            >
+              Sign in
+            </Button>
+            {errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
                 {message}
               </Alert>
             ))}
-    </Form>
-
-
+          </Form>
         </Container>
         <Container className={`mt-3 ${appStyles.Content}`}>
           <Link className={styles.Link} to="/signup">

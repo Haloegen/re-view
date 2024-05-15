@@ -1,12 +1,11 @@
 import axios from 'axios'
-import { set } from 'msw/lib/types/context'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 export const CurrentUserContext = createContext()
 export const SetCurrentUserContext = createContext()
 
 export const useCurrentUser = () => useContext(CurrentUserContext)
-export const useSetCurrentUserContext = () => useContext(SetCurrentUserContext);
+export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
 export const CurrentUserProvider = ({children}) => {
   const [currentUser, setCurrentUser] = useState(null);
