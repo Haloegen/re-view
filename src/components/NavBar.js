@@ -27,13 +27,13 @@ const NavBar = () => {
     }
   };
 
-  const addPostIcon = (
+  const addProductIcon = (
     <NavLink
       className={styles.NavLink}
       activeClassName={styles.Active}
-      to="/posts/create"
+      to="/products/create"
     >
-      <i className="far fa-plus-square"></i>Add post
+      <i className="far fa-plus-square"></i>Add product
     </NavLink>
   );
   const loggedInIcons = (
@@ -74,7 +74,6 @@ const NavBar = () => {
       >
         <i className="fas fa-sign-in-alt"></i>Sign in
       </NavLink>
-      {currentUser && addPostIcon}
       <NavLink
         to="/signup"
         className={styles.NavLink}
@@ -87,18 +86,18 @@ const NavBar = () => {
 
   return (
     <Navbar
-    expanded={expanded}
-    className={styles.NavBar}
-    expand="md"
-    fixed="top"
-  >
+      expanded={expanded}
+      className={styles.NavBar}
+      expand="md"
+      fixed="top"
+    >
       <Container>
         <NavLink to="/">
           <Navbar.Brand>
-            
+            Re.View
           </Navbar.Brand>
         </NavLink>
-
+        {currentUser && addProductIcon}
         <Navbar.Toggle
           ref={ref}
           onClick={() => setExpanded(!expanded)}
