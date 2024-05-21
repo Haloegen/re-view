@@ -2,9 +2,11 @@ import React from "react";
 import styles from "../../styles/Product.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ProfilePicture from '../../components/ProfilePicture'
 import { axiosRes } from "../../api/axiosDefaults";
+import { MoreDropdown } from "../../components/MoreDropdown";
+
 
 const Product = (props) => {
   const {
@@ -31,6 +33,21 @@ const Product = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  const history = useHistory();
+
+  const handleEdit = () => {
+    history.push(`/products/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/products/${id}/`);
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleLike = async () => {
     try {
@@ -106,7 +123,11 @@ const Product = (props) => {
           </Link>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
-            {is_owner && productPage && "..."}
+            {is_owner && productPage && "..."(
+            <MoreDropdown
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+              />)}
           </div>
         </Media>
         <div className="text-center my-2">
@@ -166,7 +187,7 @@ const Product = (props) => {
               overlay={<Tooltip>You can't dislike a product you liked!</Tooltip>}
             >
               <span>
-                <i className={`far fa-heart ${styles.HeartOutline}`} />
+                <i className={`far fa-thumbs-down ${styles.HeartOutline}`} />
               </span>
             </OverlayTrigger>
           ): unlike_id ? (
