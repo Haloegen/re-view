@@ -50,7 +50,7 @@ function ReviewCreateForm(props) {
           </Link>
           <Form.Control
             className={styles.Form}
-            placeholder="my review"
+            placeholder="Leave a review"
             as="textarea"
             value={content}
             onChange={handleChange}

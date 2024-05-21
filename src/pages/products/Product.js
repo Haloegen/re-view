@@ -123,7 +123,7 @@ const Product = (props) => {
           </Link>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
-            {is_owner && productPage && "..."(
+            {is_owner && productPage && (
             <MoreDropdown
               handleEdit={handleEdit}
               handleDelete={handleDelete}

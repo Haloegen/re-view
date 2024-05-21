@@ -28,7 +28,6 @@ function ProductPage() {
         ]);
         setProduct({ results: [product] });
         setReviews(reviews)
-        console.log(product);
       } catch (err) {
         console.log(err);
       }
