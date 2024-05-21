@@ -22,8 +22,9 @@ function ProductEditForm() {
     title: "",
     content: "",
     image: "",
+    price: "",
   });
-  const { title, content, image } = productData;
+  const { title, content, image, price } = productData;
 
   const imageInput = useRef(null);
   const history = useHistory();
@@ -33,7 +34,7 @@ function ProductEditForm() {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/products/${id}/`);
-        const { title, content, image, is_owner } = data;
+        const { title, content, image, price, is_owner } = data;
 
         is_owner ? setProductData({ title, content, image, price }) : history.push("/");
       } catch (err) {
