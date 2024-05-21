@@ -24,7 +24,7 @@ const Product = (props) => {
     image,
     updated_at,
     productPage,
-    setProducts
+    setProducts,
   } = props;
 
 
@@ -34,7 +34,7 @@ const Product = (props) => {
 
   const handleLike = async () => {
     try {
-      const { data } = await axiosRes.product("/likes/", { product: id });
+      const { data } = await axiosRes.post("/likes/", { product: id });
       setProducts((prevProducts) => ({
         ...prevProducts,
         results: prevProducts.results.map((product) => {
@@ -50,7 +50,7 @@ const Product = (props) => {
 
   const handleUnlike = async () => {
     try {
-      await axiosRes.delete(`/likes/${like_id}/`);
+      await axiosRes.delete(`likes/${like_id}/`);
       setProducts((prevProducts) => ({
         ...prevProducts,
         results: prevProducts.results.map((product) => {
@@ -66,7 +66,7 @@ const Product = (props) => {
 
   const handleDislike = async () => {
     try {
-      const { data } = await axiosRes.product("/unlikes/", { product: id });
+      const { data } = await axiosRes.post("unlikes/", { product: id });
       setProducts((prevProducts) => ({
         ...prevProducts,
         results: prevProducts.results.map((product) => {
@@ -82,7 +82,7 @@ const Product = (props) => {
 
   const handleUndislike = async () => {
     try {
-      await axiosRes.delete(`/likes/${unlike_id}/`);
+      await axiosRes.delete(`/unlikes/${unlike_id}/`);
       setProducts((prevProducts) => ({
         ...prevProducts,
         results: prevProducts.results.map((product) => {
@@ -127,7 +127,16 @@ const Product = (props) => {
             >
               <i className="far fa-heart" />
             </OverlayTrigger>
-          ) : like_id ? (
+          ) : unlike_id ? (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>You can't like a product you disliked!</Tooltip>}
+            >
+              <span>
+                <i className={`far fa-heart ${styles.HeartOutline}`} />
+              </span>
+            </OverlayTrigger>
+          ): like_id ? (
             <span onClick={handleUnlike}>
               <i className={`fas fa-heart ${styles.Heart}`} />
             </span>
@@ -151,7 +160,16 @@ const Product = (props) => {
             >
               <i className="far fa-thumbs-down" />
             </OverlayTrigger>
-          ) : unlike_id ? (
+          ) : like_id ? (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>You can't dislike a product you liked!</Tooltip>}
+            >
+              <span>
+                <i className={`far fa-heart ${styles.HeartOutline}`} />
+              </span>
+            </OverlayTrigger>
+          ): unlike_id ? (
             <span onClick={handleUndislike}>
               <i className={`fas fa-thumbs-down ${styles.Heart}`} />
             </span>
