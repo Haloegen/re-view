@@ -10,6 +10,9 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Product from "./Product";
 import ReviewCreateForm from "../reviews/ReviewCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Asset from "../../components/Asset";
+import { fetchMoreData } from "../../utils/utils";
 
 function ProductPage() {
   const { id } = useParams();
@@ -53,10 +56,17 @@ function ProductPage() {
           ) : reviews.results.length ? (
             "Reviews"
           ) : null}
-           {reviews.results.length ? (
-            reviews.results.map((review) => (
-              <Review key={review.id} {...review} setProduct={setProduct} setReviews={setReviews} />
-            ))
+          {reviews.results.length ? (
+           <InfiniteScroll
+              children={ reviews.results.map((review) => (
+                <Review key={review.id} {...review} setProduct={setProduct} setReviews={setReviews} />
+              ))}
+              dataLength={reviews.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!reviews.next}
+              next={() => fetchMoreData(reviews, setReviews)}
+            />
+           
           ) : currentUser ? (
             <span>No Reviews yet, be the first to leave a review</span>
           ) : (
