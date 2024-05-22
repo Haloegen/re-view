@@ -53,7 +53,7 @@ function App() {
           <Route exact path='/signin' render={() => <SignInForm />} />
           <Route exact path='/products/create' render={() => <ProductCreateForm />}/>
           <Route exact path='/products/:id' render={() => <ProductPage/>} />
-          <Route exact path="/posts/:id/edit" render={() => <ProductEditForm />} />
+          <Route exact path="/products/:id/edit" render={() => <ProductEditForm />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
