@@ -13,6 +13,8 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
+import PopularProfiles from "../profiles/PopularProfiles";
+
 
 function ProductPage() {
   const { id } = useParams();
@@ -42,7 +44,7 @@ function ProductPage() {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>Most liked Reviewers</p>
+      <PopularProfiles mobile />
         <Product {...product.results[0]} setProducts={setProduct} productPage/>
         <Container className={appStyles.Content}>
           {currentUser ? (
@@ -77,7 +79,7 @@ function ProductPage() {
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        Most Liked Reviewers
+      <PopularProfiles />
       </Col>
     </Row>
   );
