@@ -9,6 +9,10 @@ import Asset from "../../components/Asset";
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Product from '../products/Product'
+import { fetchMoreData } from "../../utils/utils";
+import NoResults from "../../assets/no-results.png"
 
 import PopularProfiles from "./PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -22,6 +26,7 @@ import { Button, Image } from "react-bootstrap";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [profileProducts, setProfileProducts] = useState({results: []})
   const currentUser = useCurrentUser();
   const { id } = useParams();
   const setProfileData = useSetProfileData();
@@ -32,13 +37,16 @@ function ProfilePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: pageProfile }] = await Promise.all([
-          axiosReq.get(`/profiles/${id}/`),
-        ]);
+        const [{ data: pageProfile }, { data: profileProducts }] =
+          await Promise.all([
+            axiosReq.get(`/profiles/${id}/`),
+            axiosReq.get(`/products/?owner__profile=${id}`),
+          ]);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
         }));
+        setProfileProducts(profileProducts)
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -101,8 +109,24 @@ function ProfilePage() {
   const mainProfilePosts = (
     <>
       <hr />
-      <p className="text-center">Profile owner's Reviews</p>
+      <p className="text-center">{profile?.owner}'s Reviews</p>
       <hr />
+      {profileProducts.results.length ? (
+        <InfiniteScroll
+          children={profileProducts.results.map((product) => (
+            <Product key={product.id} {...product} setProducts={setProfileProducts} />
+          ))}
+          dataLength={profileProducts.results.length}
+          loader={<Asset spinner />}
+          hasMore={!!profileProducts.next}
+          next={() => fetchMoreData(profileProducts, setProfileProducts)}
+        />
+      ) : (
+        <Asset
+          src={NoResults}
+          message={`No results found, ${profile?.owner} hasn't posted any reviews yet.`}
+        />
+      )}
     </>
   );
 
