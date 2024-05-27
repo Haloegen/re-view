@@ -1,22 +1,36 @@
 .Product {
   background-color: #ffffff;
-  border: 1px solid #dadadf;
-  border-radius: 2px;
-  margin-bottom: 16px;
+  border: 1px solid #dcdcdc; /* Updated border color for consistency */
+  border-radius: 8px; /* Increased border radius for a softer look */
+  margin-bottom: 20px; /* Slightly increased margin for better spacing */
+  padding: 20px; /* Added padding for better spacing */
   text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added subtle shadow for depth */
+  transition: background-color 0.3s, border-color 0.3s; /* Smooth transition for background and border */
+}
+
+.Product:hover {
+  background-color: #f9f9f9; /* Slightly darker background on hover */
+  border-color: #c0c0c0; /* Slightly darker border on hover */
 }
 
 .Product figure,
 h5 {
-  margin: 0 0;
+  margin: 0;
 }
 
 .Heart {
   color: #f85032;
+  transition: color 0.3s; /* Smooth transition for color */
 }
 
 .Heart:hover {
   color: #2142b2;
+}
+
+.HeartOutline {
+  color: inherit; /* Ensures it inherits color unless hovered */
+  transition: color 0.3s; /* Smooth transition for color */
 }
 
 .HeartOutline:hover {

@@ -10,6 +10,8 @@ import {
 import ProfilePicture from "./ProfilePicture";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
+import Logo from '../assets/logo.png'
+
 
 
 const NavBar = () => {
@@ -43,17 +45,14 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/feed"
       >
-        <i className="fas fa-stream"></i>News Feed
+        <i className="fas fa-stream"></i>Followed Feed
       </NavLink>
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/liked"
       >
-        <i className="fas fa-heart"></i>Liked
-      </NavLink>
-      <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
-        <i className="fas fa-sign-out-alt"></i>Sign out
+        <i className="fas fa-thumbs-up"></i>Liked
       </NavLink>
       <NavLink
         className={styles.NavLink}
@@ -61,6 +60,10 @@ const NavBar = () => {
       >
         <ProfilePicture src={currentUser?.profile_image} text="Profile" height={40} />
       </NavLink>
+      <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
+        <i className="fas fa-sign-out-alt"></i>Sign out
+      </NavLink>
+
     </>
   );
 
@@ -93,8 +96,8 @@ const NavBar = () => {
     >
       <Container>
         <NavLink to="/">
-          <Navbar.Brand>
-            Re.View
+          <Navbar.Brand className="left">
+          <img src={Logo} alt="logo" height="45" />
           </Navbar.Brand>
         </NavLink>
         {currentUser && addProductIcon}

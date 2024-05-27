@@ -29,8 +29,6 @@ const Product = (props) => {
     setProducts,
   } = props;
 
-
-
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
@@ -124,21 +122,23 @@ const Product = (props) => {
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
             {is_owner && productPage && (
-            <MoreDropdown
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-              />)}
+              <MoreDropdown
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            )}
           </div>
         </Media>
         <div className="text-center my-2">
-          {price && <span className="font-weight-bold">Price: ${price}</span>}
+        {title && <Card.Title className="text-center">{title}</Card.Title>}
         </div>
       </Card.Body>
+      {price && <span className="font-weight-bold">Price: ${price}</span>}
+
       <Link to={`/products/${id}`}>
         <Card.Img src={image} alt={title} />
       </Link>
       <Card.Body>
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
         <div className={styles.Bar}>
           {is_owner ? (
@@ -146,7 +146,7 @@ const Product = (props) => {
               placement="top"
               overlay={<Tooltip>You can't like your own product!</Tooltip>}
             >
-              <i className="far fa-heart" />
+              <i className="far fa-thumbs-up" />
             </OverlayTrigger>
           ) : unlike_id ? (
             <OverlayTrigger
@@ -154,23 +154,23 @@ const Product = (props) => {
               overlay={<Tooltip>You can't like a product you disliked!</Tooltip>}
             >
               <span>
-                <i className={`far fa-heart ${styles.HeartOutline}`} />
+                <i className={`far fa-thumbs-up ${styles.HeartOutline}`} />
               </span>
             </OverlayTrigger>
-          ): like_id ? (
+          ) : like_id ? (
             <span onClick={handleUnlike}>
-              <i className={`fas fa-heart ${styles.Heart}`} />
+              <i className={`fas fa-thumbs-up ${styles.Heart}`} />
             </span>
           ) : currentUser ? (
             <span onClick={handleLike}>
-              <i className={`far fa-heart ${styles.HeartOutline}`} />
+              <i className={`far fa-thumbs-up ${styles.HeartOutline}`} />
             </span>
           ) : (
             <OverlayTrigger
               placement="top"
               overlay={<Tooltip>Log in to like Product!</Tooltip>}
             >
-              <i className="far fa-heart" />
+              <i className="far fa-thumbs-up" />
             </OverlayTrigger>
           )}
           {likes_count}
@@ -190,7 +190,7 @@ const Product = (props) => {
                 <i className={`far fa-thumbs-down ${styles.HeartOutline}`} />
               </span>
             </OverlayTrigger>
-          ): unlike_id ? (
+          ) : unlike_id ? (
             <span onClick={handleUndislike}>
               <i className={`fas fa-thumbs-down ${styles.Heart}`} />
             </span>
