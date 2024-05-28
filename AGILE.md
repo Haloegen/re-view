@@ -3,6 +3,8 @@
 
 For this project, i took on an agile approach in in order to sort the workload into more managable chunks, with the help of a kanban board, and the code institute walk through project to get an idea on what I wanted to make.
 
+[**_this is a link to the project board_**](https://github.com/users/Haloegen/projects/6/views/1)
+
 ## **Table of Contents (Agile Development):**
 
 1. [**Agile Overview**](#agile-overview)

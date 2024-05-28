@@ -73,8 +73,10 @@ The review nav bar sits fixed at the top of the page and is always visible to th
 
 Logged out:
 
-Logged in:
+![Logged out](https://res.cloudinary.com/dtajxn9oi/image/upload/v1716913618/Drf-api/Screenshot_20_x8zvls.png)
 
+Logged in:
+![Logged in](https://res.cloudinary.com/dtajxn9oi/image/upload/v1716913617/Drf-api/Screenshot_16_if9fdr.png)
 On smaller screens. the menu collapses into a React Bootstrap burger menu:
 
 
@@ -82,6 +84,7 @@ On smaller screens. the menu collapses into a React Bootstrap burger menu:
 The home page is the main container for the sites content, and is where most of the main features are displayed, each individual product is displayed, aswell as Popular Profiles.
 
 Desktop view (logged in):
+![Desktop view](https://res.cloudinary.com/dtajxn9oi/image/upload/v1716913618/Drf-api/Screenshot_17_ciwijk.png)
 
 The Product section is divided so three products are displayed in a line, each can be clicked and brought specifically to the product page, liked, disliked and reviewed.
 
@@ -124,6 +127,7 @@ Users who are not logged in cannot see the option to add a comment:
 If a user is logged in, they will see the option to create a comment:
 
 ## **Profile Page**
+
 
 When a user creates an account a new profile is logged to the back end which allows the user to then edit and change details about the profile, the profile contains, how many products they have produced, the amount of people they follow, the amount of followers they have and any products are listed below the profile component.
 
@@ -200,9 +204,7 @@ To connect the deployed front and back-end projects, the following Config Vars n
 | :--------------------------- | :----------- |
 | CLIENT_ORIGIN | Your-deployed-app-url-here |
 | CLIENT_ORIGIN_DEV | http://localhost:3000\*\* |
-
-
-\*\*_if you are using a cloud-based IDE, you will need to replace this with the link to your cloud IDE workspace_
+n
 
 Please note that it is important to remove trailing slashes from these URLs.
 
