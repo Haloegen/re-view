@@ -1,17 +1,33 @@
+/* ProductsPage.module.css */
+.ProductCard {
+  width: 100%;
+  max-width: 300px;
+  height: 600px; /* Adjusted height to ensure content fits */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ProductImage {
+  width: 100%;
+  height: 200px; /* Adjust height to fit content */
+  object-fit: cover;
+}
+
 .SearchBar input {
   border-radius: 20px;
   color: #242a3d;
-  padding: 10px 20px 10px 40px; /* Adjusted padding for better spacing */
-  margin-bottom: 20px; /* Increased bottom margin for better spacing */
-  border: 1px solid #dcdcdc; /* Added border for consistency */
-  background-color: #ffffff; /* Ensured background color is white */
-  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transitions for border and shadow */
+  padding: 10px 20px 10px 40px;
+  margin-bottom: 20px;
+  border: 1px solid #dcdcdc;
+  background-color: #ffffff;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .SearchBar input:focus {
-  border-color: #2142b2; /* Highlight border color on focus */
-  box-shadow: 0 0 5px rgba(33, 66, 178, 0.3); /* Added subtle shadow on focus */
-  outline: none; /* Removed default outline */
+  border-color: #2142b2;
+  box-shadow: 0 0 5px rgba(33, 66, 178, 0.3);
+  outline: none;
 }
 
 .SearchIcon {
@@ -19,11 +35,11 @@
   font-size: 1.2rem;
   padding: 9px;
   padding-left: 15px;
-  color: #242a3d; /* Set default color */
-  transition: color 0.3s; /* Smooth transition for color */
+  color: #242a3d;
+  transition: color 0.3s;
 }
 
 .SearchIcon:hover {
-  cursor: pointer; /* Changed cursor to pointer for better UX */
-  color: #2142b2; /* Changed hover color to match the theme */
+  cursor: pointer;
+  color: #2142b2;
 }

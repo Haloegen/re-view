@@ -7,7 +7,6 @@ import ProfilePicture from '../../components/ProfilePicture'
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 
-
 const Product = (props) => {
   const {
     id,
@@ -27,6 +26,7 @@ const Product = (props) => {
     updated_at,
     productPage,
     setProducts,
+    className, // new prop
   } = props;
 
   const currentUser = useCurrentUser();
@@ -112,7 +112,7 @@ const Product = (props) => {
   };
 
   return (
-    <Card className={styles.Product}>
+    <Card className={`${styles.Product} ${className}`}>
       <Card.Body>
         <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${profile_id}`}>
@@ -130,15 +130,15 @@ const Product = (props) => {
           </div>
         </Media>
         <div className="text-center my-2">
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
+          {title && <Card.Title className="text-center">{title}</Card.Title>}
         </div>
       </Card.Body>
       {price && <span className="font-weight-bold">Price: ${price}</span>}
 
       <Link to={`/products/${id}`}>
-        <Card.Img src={image} alt={title} />
+        <Card.Img src={image} alt={title} className={styles.ProductImage} />
       </Link>
-      <Card.Body>
+      <Card.Body className="d-flex flex-column justify-content-between">
         {content && <Card.Text>{content}</Card.Text>}
         <div className={styles.Bar}>
           {is_owner ? (

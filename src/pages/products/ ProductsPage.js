@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
 import Asset from "../../components/Asset";
-
 import appStyles from "../../App.module.css";
 import styles from '../../styles/ProductsPage.module.css'
 import { useLocation } from "react-router";
@@ -48,7 +46,7 @@ function ProductsPage({ message, filter = "" }) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-      <PopularProfiles mobile />
+        <PopularProfiles mobile />
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form
           className={styles.SearchBar}
@@ -65,15 +63,23 @@ function ProductsPage({ message, filter = "" }) {
         {hasLoaded ? (
           <>
             {products.results.length ? (
-               <InfiniteScroll
-               children={products.results.map((product) => (
-                 <Product key={product.id} {...product} setProducts={setProducts} />
-               ))}
-               dataLength={products.results.length}
-               loader={<Asset spinner />}
-               hasMore={!!products.next}
-               next={() => fetchMoreData(products, setProducts)}
-             />): (
+              <InfiniteScroll
+                dataLength={products.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!products.next}
+                next={() => fetchMoreData(products, setProducts)}
+              >
+                <Container>
+                  <Row>
+                    {products.results.map((product) => (
+                      <Col key={product.id} md={4} className="mb-4">
+                        <Product {...product} setProducts={setProducts} className={styles.ProductCard} />
+                      </Col>
+                    ))}
+                  </Row>
+                </Container>
+              </InfiniteScroll>
+            ) : (
               <Container className={appStyles.Content}>
                 <Asset src={NoResults} message={message} />
               </Container>
@@ -86,7 +92,7 @@ function ProductsPage({ message, filter = "" }) {
         )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-      <PopularProfiles />
+        <PopularProfiles />
       </Col>
     </Row>
   );
