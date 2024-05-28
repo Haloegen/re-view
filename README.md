@@ -97,6 +97,7 @@ The Product component is the most important component in the app as it houses th
 The home page displays the newest products first which can be narrowed down through follower feed, which is users you have followed and their products and Liked, which shows products you have previously liked.
 
 Clicked on the Add a product button on the nav bar brings you to the Create a Product form.
+![AddProject](https://res.cloudinary.com/dtajxn9oi/image/upload/v1716914902/Drf-api/Screenshot_25_zq9nt0.png)
 
 also if a user wishes to change information on a product he can click the three dots on the Product page and edit to update or change the information relating to the product.
 
@@ -109,11 +110,13 @@ The liked feed as described above in the main Products tab only shows users prod
 #### **Search Bar**
 the search bar allowes users to type in keywords or search for authors username to narrow down the posts they want to see
 If no products or user exists that match the search criteria a graphic appears:
+![No-search](https://res.cloudinary.com/dtajxn9oi/image/upload/v1716914964/Drf-api/Screenshot_26_aqanwj.png)
 
 ### Likes and Dislikes
 
 The Likes and Dislikes are held on a bar component which allows users 3 clickable options, Like, Dislike, Or the comment bubble to be brought to the product pages reviews, each instance shows how many likes/dislikes a product has and how many comments their are.
 Product owners are not able to like and dislike, You have to be logged in to like and dislike, as a logged out user you can see the reviews and the products but cannot interact with the likes, dislikes or review the product.
+![likes](https://res.cloudinary.com/dtajxn9oi/image/upload/v1716915259/Drf-api/Screenshot_28_dpzfzl.png)
 
 ### **Infinite Scroll**
 The [**_React Infinite Scroll Component_**](https://www.npmjs.com/package/react-infinite-scroll-component) was used to allow products on the homepage and the reviews on the product page to 'infinitely' load 10 posts at a time (the default page limit set in the back-end). This improves user experience by allowing them to keep scrolling rather than deal with 'next' and 'previous' buttons.
@@ -121,11 +124,11 @@ The [**_React Infinite Scroll Component_**](https://www.npmjs.com/package/react-
 ### **Reviews**
 A small comment bubble is displayed on the bottom of each product, this shows how many reviews a product has, and clicking on it reveals the product page, with the reviews beneath it.
 
-Users who are not logged in cannot see the option to add a comment:
+Users who are not logged in cannot see the option to add a review:
+![review](https://res.cloudinary.com/dtajxn9oi/image/upload/v1716915254/Drf-api/Screenshot_27_zhztzt.png)
 
-
-If a user is logged in, they will see the option to create a comment:
-
+If a user is logged in, they will see the option to create a review:
+![review2](https://res.cloudinary.com/dtajxn9oi/image/upload/v1716915330/Drf-api/Screenshot_29_zb5pxb.png)
 ## **Profile Page**
 
 
@@ -133,6 +136,7 @@ When a user creates an account a new profile is logged to the back end which all
 
 Similar to editing products and reviews, when the owner of a profile wants to edit their profile information, the UserProfile component is replaced with the EditProfile form so that they are not navigated away from the page.
 
+![profile-page](https://res.cloudinary.com/dtajxn9oi/image/upload/v1716915418/Drf-api/Screenshot_30_fq8d4x.png)
 ### **Popular Profiles**
 
 The PopularProfiles component is used in two places - the homepage, and the profile page.
@@ -144,9 +148,10 @@ As it is important to maintain the correct information for profiles (such as upd
 
 ### **Authentication Pages**
 #### **Register**
-
+![signUp](https://res.cloudinary.com/dtajxn9oi/image/upload/v1716914413/Drf-api/Screenshot_22_kw2svw.png)
 
 #### **Log In**
+![signIn](https://res.cloudinary.com/dtajxn9oi/image/upload/v1716913618/Drf-api/Screenshot_19_ftwtng.png)
 
 
 ## **Reusable Components**
