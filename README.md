@@ -4,9 +4,9 @@ RE.view is a opinion/review based app where users post a product on the main pag
 
 This front end app is composed from a list of interactive and largely reused React Components, I have made an active effort to where possibly make the app reusable and adjustable.
 
-To view the deployed app, [**_click this link_**]()
+To view the deployed app, [**_click this link_**](https://re-view-198da65eeda5.herokuapp.com/)
 
-To view the back-end repository for this app, [**_click this link_**]()
+To view the back-end repository for this app, [**_click this link_**](https://github.com/Haloegen/ci-project-5-api)
 
 ## **Table of Contents:**
 
@@ -46,7 +46,7 @@ To view the back-end repository for this app, [**_click this link_**]()
 The primary goal of this app was to provide the users with a smooth user-friendly platfrom where they could post their products, edit and delete them on a social site where other users could interact, give their opinions in the form of leaving reviews or the like and dislike functions, follow their favourite producers.
 
 ### **User Stories**
-User stories can be found by clicking this [**_link_**]()
+User stories can be found by clicking this [**_link_**](https://github.com/users/Haloegen/projects/6)
 
 The User Stories are In Several Epics/Categories which are
 - NAVIGATION
