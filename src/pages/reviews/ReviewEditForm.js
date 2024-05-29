@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 
 import Form from "react-bootstrap/Form";
@@ -12,18 +11,22 @@ function ReviewEditForm(props) {
   const [formContent, setFormContent] = useState(content);
 
   const handleChange = (event) => {
+    // console.log("handleChange called");
     setFormContent(event.target.value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    // console.log("handleSubmit called");
     try {
       await axiosRes.put(`/reviews/${id}/`, {
         content: formContent.trim(),
       });
+      // console.log("Review updated successfully");
       setReviews((prevReviews) => ({
         ...prevReviews,
         results: prevReviews.results.map((review) => {
+          // console.log("Updating review: ", review);
           return review.id === id
             ? {
                 ...review,
@@ -35,7 +38,7 @@ function ReviewEditForm(props) {
       }));
       setShowEditForm(false);
     } catch (err) {
-      console.log(err);
+      // console.log("Error: ", err);
     }
   };
 
@@ -53,7 +56,10 @@ function ReviewEditForm(props) {
       <div className="text-right">
         <button
           className={styles.Button}
-          onClick={() => setShowEditForm(false)}
+          onClick={() => {
+            // console.log("Cancel button clicked");
+            setShowEditForm(false);
+          }}
           type="button"
         >
           cancel

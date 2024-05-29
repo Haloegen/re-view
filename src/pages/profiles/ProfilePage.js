@@ -50,7 +50,7 @@ function ProfilePage() {
         setProfileProducts(profileProducts)
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     fetchData();
@@ -64,7 +64,7 @@ function ProfilePage() {
           <Image
             className={styles.ProfileImage}
             roundedCircle
-            src={profile?.image.replace("Drf-api/Drf-api", "Drf-api")}
+            src={profile?.image}
           />
         </Col>
         <Col lg={6}>

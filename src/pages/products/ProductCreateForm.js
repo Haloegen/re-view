@@ -58,7 +58,7 @@ function ProductCreateForm() {
       const { data } = await axiosReq.post("/products/", formData);
       history.push(`/products/${data.id}`);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -82,7 +82,7 @@ function ProductCreateForm() {
           {message}
         </Alert>
       ))}
-            <Form.Group>
+      <Form.Group>
         <Form.Label className="h5">Price</Form.Label>
         <Form.Control
           type="number"

@@ -8,7 +8,6 @@ import { useProfileData } from "../../contexts/ProfileDataContext";
 const PopularProfiles = ({ mobile }) => {
   const { popularProfiles } = useProfileData();
 
-
   return (
     <Container
       className={`${appStyles.Content} ${

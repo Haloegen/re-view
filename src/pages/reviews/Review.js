@@ -1,68 +1,72 @@
 import React, { useState } from "react";
-import { Media } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+
+import styles from '../../styles/ReviewCreateEditForm.module.css'
 import ProfilePicture from "../../components/ProfilePicture";
-import styles from "../../styles/Review.module.css";
-import { MoreDropdown } from "../../components/MoreDropdown";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
-import ReviewEditForm from "./ReviewEditForm";
 
+function ReviewCreateForm(props) {
+  const { product, setProduct, setReviews, profileImage, profile_id } = props;
+  const [content, setContent] = useState("");
 
-const Review = (props) => {
-  const { profile_id, profile_image, owner, updated_at, content, id, setProduct, setReviews } = props;
-  
-  const [showEditForm, setShowEditForm] = useState(false);
-  const currentUser = useCurrentUser();
-  const is_owner = currentUser?.username === owner;
+  const handleChange = (event) => {
+    setContent(event.target.value);
+  };
 
-  const handleDelete = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      await axiosRes.delete(`/reviews/${id}/`);
+      const { data } = await axiosRes.post("/reviews/", {
+        content,
+        product,
+      });
+      setReviews((prevReviews) => ({
+        ...prevReviews,
+        results: [data, ...prevReviews.results],
+      }));
       setProduct((prevProduct) => ({
         results: [
           {
             ...prevProduct.results[0],
-            reviews_count: prevProduct.results[0].reviews_count - 1,
+            reviews_count: prevProduct.results[0].reviews_count + 1,
           },
         ],
       }));
-
-      setReviews((prevReviews) => ({
-        ...prevReviews,
-        results: prevReviews.results.filter((review) => review.id !== id),
-      }));
-    } catch (err) {}
+      setContent("");
+    } catch (err) {
+      // console.log(err);
+    }
   };
-  return (
-    <>
-      <hr />
-      <Media>
-        <Link to={`/profiles/${profile_id}`}>
-          <ProfilePicture src={profile_image} />
-        </Link>
-        <Media.Body className="align-self-center ml-2">
-          <span className={styles.Owner}>{owner}</span>
-          <span className={styles.Date}>{updated_at}</span>
-          {showEditForm ? (
-            <ReviewEditForm
-              id={id}
-              profile_id={profile_id}
-              content={content}
-              profileImage={profile_image}
-              setReviews={setReviews}
-              setShowEditForm={setShowEditForm}
-            />
-          ) : (
-            <p>{content}</p>
-          )}
-        </Media.Body>
-        {is_owner && !showEditForm && (
-          <MoreDropdown handleEdit={() => setShowEditForm(true)} handleDelete={handleDelete} />
-        )}
-      </Media>
-      </>
-  );
-};
 
-export default Review;
+  return (
+    <Form className="mt-2" onSubmit={handleSubmit}>
+      <Form.Group>
+        <InputGroup>
+          <Link to={`/profiles/${profile_id}`}>
+            <ProfilePicture src={profileImage} />
+          </Link>
+          <Form.Control
+            className={styles.Form}
+            placeholder="Leave a review"
+            as="textarea"
+            value={content}
+            onChange={handleChange}
+            rows={2}
+          />
+        </InputGroup>
+      </Form.Group>
+      <button
+        className={`${styles.Button} btn d-block ml-auto`}
+        disabled={!content.trim()}
+        type="submit"
+      >
+        Commit
+      </button>
+    </Form>
+  );
+}
+
+export default ReviewCreateForm;

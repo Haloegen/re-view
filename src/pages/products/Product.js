@@ -43,7 +43,7 @@ const Product = (props) => {
       await axiosRes.delete(`/products/${id}/`);
       history.push('/');
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -59,7 +59,7 @@ const Product = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -75,7 +75,7 @@ const Product = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -91,7 +91,7 @@ const Product = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -107,7 +107,7 @@ const Product = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

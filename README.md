@@ -16,6 +16,7 @@ To view the back-end repository for this app, [**_click this link_**](https://gi
    - [**User Stories**](#user-stories)
    - [**Design**](#design)
      - [**_Colour Scheme_**](#colour-scheme)
+      -[**_Font Choice_**](#font-choice)
 1. [**Current Features**](#current-features)
    - [**Header and Navigation**](#header-and-navigation)
 1. [**Home Page**](#home-page)
@@ -47,6 +48,7 @@ The primary goal of this app was to provide the users with a smooth user-friendl
 
 ### **User Stories**
 User stories can be found by clicking this [**_link_**](https://github.com/users/Haloegen/projects/6)
+Also my agile methodology can be seen in this project [**_agile_**](/AGILE.md) file
 
 The User Stories are In Several Epics/Categories which are
 - NAVIGATION
@@ -59,10 +61,21 @@ Although the User stories are directly reflected on the front end app, the funct
 ### **Design**
 The design of this website was inspired by the logo I had made from Looka.com.
 The design is still a work in progress, in the future independent icons and a custom logo would be added.
+Using inspiration from other websites such as facebook, amazon, where the most functionality is achieved through the nav bar.
 
 #### **Color Scheme**
-#1a1a1a is the main color for the app, for the background and the navbar
-#2142b2 with this as a hover to add emphasis on the buttons 
+List of colours chosen
+#ff9254 - this orange was chosen to contrast the normally dark look of the project and highlight what the user had selected when reacting to a product
+#8e7bc9 - this darker purple was used on hover for the follow and unfollow buttons to give clear visual feedback
+#2142b2- this was used as an accent for User names, and to add depth to the project
+#7177a1- 
+#242a3d - this is the main color of the project, being the background for most the projects features
+#ffffff - this is used for most of the elements, as they sit and can be cleary seen on the dark background
+#00d1ff
+#c1c1c5 - this light grey color was used again to contrast the normal dark look of the project
+
+#### **Font Choice**
+the choice of font I went for is Open sans, after looking on Google fonts I saw it , and liked the way it looked and upon using it I am very happy with the choice
 
 # **Current Features**
 
@@ -178,6 +191,9 @@ This project is written using React, a JavaScript Framework, and was created usi
 - Cloudinary - handles the static files and images by storing them on the cloud rather than directly in this project's database.
 - Heroku - providing a platform in which to host the deployed project.
 
+
+## **Testing** 
+This is done in a seperate file [**_click this link_**]() to see.
 
 ## **Deployment**
 

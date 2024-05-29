@@ -15,7 +15,6 @@ import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 
-
 function ProductPage() {
   const { id } = useParams();
   const [product, setProduct] = useState({ results: [] });
@@ -27,14 +26,14 @@ function ProductPage() {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: product } , {data: reviews}] = await Promise.all([
+        const [{ data: product }, { data: reviews }] = await Promise.all([
           axiosReq.get(`/products/${id}`),
           axiosReq.get(`/reviews/?product=${id}`),
         ]);
         setProduct({ results: [product] });
-        setReviews(reviews)
+        setReviews(reviews);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 
@@ -44,8 +43,8 @@ function ProductPage() {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-      <PopularProfiles mobile />
-        <Product {...product.results[0]} setProducts={setProduct} productPage/>
+        <PopularProfiles mobile />
+        <Product {...product.results[0]} setProducts={setProduct} productPage />
         <Container className={appStyles.Content}>
           {currentUser ? (
             <ReviewCreateForm
@@ -59,27 +58,29 @@ function ProductPage() {
             "Reviews"
           ) : null}
           {reviews.results.length ? (
-           <InfiniteScroll
-              children={ reviews.results.map((review) => (
-                <Review key={review.id} {...review} setProduct={setProduct} setReviews={setReviews} />
+            <InfiniteScroll
+              children={reviews.results.map((review) => (
+                <Review
+                  key={review.id}
+                  {...review}
+                  setProduct={setProduct}
+                  setReviews={setReviews}
+                />
               ))}
               dataLength={reviews.results.length}
               loader={<Asset spinner />}
               hasMore={!!reviews.next}
               next={() => fetchMoreData(reviews, setReviews)}
             />
-           
           ) : currentUser ? (
             <span>No Reviews yet, be the first to leave a review</span>
           ) : (
-            <span>
-              No reviews yet
-            </span>
+            <span>No reviews yet</span>
           )}
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-      <PopularProfiles />
+        <PopularProfiles />
       </Col>
     </Row>
   );
