@@ -20,7 +20,7 @@ For this project, i took on an agile approach in in order to sort the workload i
 ### **First Sprint**
 #### **1st May-9th May**
 This first sprint was spent creating my drf repo, planning what my project would be, and how I would go about implementing the changes I wanted to make.
-I followed the Code Institute drf-api video and made changes where necessary to get my project to full functionality and began thinking how I would implement them on the front end
+I created the drf-ali and made changes, by adding an unlike, reviews and products in substitute for posts, and comments to get my project  to full functionality and began thinking how I would implement them on the front end
 
 ### **Second Sprint** 
 #### **May 9th - May 16th

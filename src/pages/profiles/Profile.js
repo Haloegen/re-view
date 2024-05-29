@@ -14,6 +14,8 @@ const Profile = (props) => {
   const is_owner = currentUser?.username === owner;
   const { handleFollow, handleUnfollow } = useSetProfileData();
 
+  console.log(profile)
+
   return (
     <div
       className={`my-3 d-flex align-items-center ${mobile && "flex-column"}`}
