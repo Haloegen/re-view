@@ -58,7 +58,7 @@ const NavBar = () => {
         className={styles.NavLink}
         to={`/profiles/${currentUser?.profile_id}`}
       >
-        <ProfilePicture src={currentUser?.profile_image} text="Profile" height={40} />
+        <ProfilePicture src={currentUser?.profile_image} text={currentUser?.username} height={40} />
       </NavLink>
       <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
         <i className="fas fa-sign-out-alt"></i>Sign out

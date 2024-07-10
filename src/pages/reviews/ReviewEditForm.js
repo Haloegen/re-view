@@ -19,7 +19,7 @@ function ReviewEditForm(props) {
     event.preventDefault();
     // console.log("handleSubmit called");
     try {
-      await axiosRes.put(`/reviews/${id}/`, {
+      await axiosRes.put(`reviews/${id}/`, {
         content: formContent.trim(),
       });
       // console.log("Review updated successfully");
